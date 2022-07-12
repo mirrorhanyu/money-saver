@@ -37,4 +37,10 @@ jobs:
             --inventory hosts
             --extra-vars IMAGE_TAG=${{ github.sha }}
             --extra-vars REMOTE_SERVER_IP=${{ secrets.REMOTE_SERVER_IP }}
+            --extra-vars WECHAT_OA_TOKEN=${{ secrets.WECHAT_OA_TOKEN }}
+            --extra-vars WECHAT_OA_APP_ID=${{ secrets.WECHAT_OA_APP_ID }}
+            --extra-vars WECHAT_OA_AES=${{ secrets.WECHAT_OA_AES }}
+            --extra-vars TBK_APPKEY=${{ secrets.TBK_APPKEY }}
+            --extra-vars TBK_APP_SECRET=${{ secrets.TBK_APP_SECRET }}
+            --extra-vars TBK_ADZONE_ID=${{ secrets.TBK_ADZONE_ID }}
             --verbose
