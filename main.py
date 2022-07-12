@@ -20,7 +20,17 @@ robot = werobot.WeRoBot(token=os.getenv('WECHAT_OA_TOKEN'))
 
 @robot.handler
 def hello(message):
-    print("I receive message", message)
+    return "hello world"
+
+
+@robot.subscribe
+def subscribe(message):
+    return 'Hello My Friend!'
+
+
+@robot.text
+def hello(message):
+    print("I receive text", message)
     query = "【老爸抽检】英氏婴幼儿维C加铁营养米粉辅食宝宝1段高铁米糊258g"
     material_response = request('taobao.tbk.dg.material.optional', {
         "adzone_id": os.getenv('TBK_ADZONE_ID'),
