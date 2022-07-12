@@ -7,11 +7,11 @@
         image: callmehan/money-saver:{{ IMAGE_TAG }}
         recreate: yes
         env:
-          WECHAT_OA_TOKEN: {{ WECHAT_OA_TOKEN }}
-          WECHAT_OA_APP_ID: {{ WECHAT_OA_APP_ID }}
-          WECHAT_OA_AES: {{ WECHAT_OA_AES }}
-          TBK_APPKEY: {{ TBK_APPKEY }}
-          TBK_APP_SECRET: {{ TBK_APP_SECRET }}
-          TBK_ADZONE_ID: {{ TBK_ADZONE_ID }}
+          WECHAT_OA_TOKEN: "{{ WECHAT_OA_TOKEN }}"
+          WECHAT_OA_APP_ID: "{{ WECHAT_OA_APP_ID }}"
+          WECHAT_OA_AES: "{{ WECHAT_OA_AES }}"
+          TBK_APPKEY: "{{ TBK_APPKEY }}"
+          TBK_APP_SECRET: "{{ TBK_APP_SECRET }}"
+          TBK_ADZONE_ID: "{{ TBK_ADZONE_ID }}"
         ports:
           - "80:80"
