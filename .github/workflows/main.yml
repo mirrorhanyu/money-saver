@@ -35,5 +35,6 @@ jobs:
           key: ${{secrets.REMOTE_SERVER_PRIVATE_KEY}}
           options: |
             --inventory hosts
-            --extra-vars IMAGE_TAG=${{ github.sha }} REMOTE_SERVER_IP=${{ secrets.REMOTE_SERVER_IP }}
+            --extra-vars IMAGE_TAG=${{ github.sha }}
+            --extra-vars REMOTE_SERVER_IP=${{ secrets.REMOTE_SERVER_IP }}
             --verbose
