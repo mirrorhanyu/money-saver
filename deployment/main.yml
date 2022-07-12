@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: Update Container
+      community.general.docker_container:
+        name: money-saver-container
+        image: callmehan/money-saver:{{ IMAGE_TAG }}
+        recreate: yes
+        ports:
+          - "8080:80"
