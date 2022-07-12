@@ -1,2 +1,2 @@
 [ec2]
-{{ REMOTE_SERVER_IP }} ansible_user=root ansible_python_interpreter=/usr/bin/python3
+139.196.100.227 ansible_user=root ansible_python_interpreter=/usr/bin/python3
