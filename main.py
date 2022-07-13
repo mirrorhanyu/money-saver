@@ -39,7 +39,7 @@ def hello(message: TextMessage):
         "adzone_id": os.getenv('TBK_ADZONE_ID'),
         "q": query
     }).json()
-    result = next(result for result in material_response['result_list'] if result['title'] == query)
+    result = next(result for result in material_response['result_list'] if result['title'] == message.content)
     money = Decimal(result['zk_final_price']) * Decimal(result['commission_rate']) / Decimal(10000)
     return str(money)
 
