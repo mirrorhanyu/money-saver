@@ -1,9 +1,9 @@
-import logging
 import os
 from decimal import Decimal
 
 import werobot
 from werobot.logger import logger
+from werobot.messages.messages import TextMessage
 
 from helper.tbk import request
 
@@ -31,8 +31,8 @@ def subscribe(message):
 
 
 @robot.text
-def hello(message):
-    logger.info(message)
+def hello(message: TextMessage):
+    logger.info(f"message from {message.source} to {message.target} is {message.content} at {message.time}")
     query = "【老爸抽检】英氏婴幼儿维C加铁营养米粉辅食宝宝1段高铁米糊258g"
     material_response = request('taobao.tbk.dg.material.optional', {
         "adzone_id": os.getenv('TBK_ADZONE_ID'),
