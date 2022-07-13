@@ -1,4 +1,5 @@
 import os
+import re
 from decimal import Decimal
 
 import werobot
@@ -33,14 +34,13 @@ def subscribe(message):
 @robot.text
 def hello(message: TextMessage):
     logger.info(f"message from {message.source} to {message.target} is {message.content} at {message.time}")
-    query = "【老爸抽检】英氏婴幼儿维C加铁营养米粉辅食宝宝1段高铁米糊258g"
+    query = re.findall('「(.*?)」',message.content)[0]
     material_response = request('taobao.tbk.dg.material.optional', {
         "adzone_id": os.getenv('TBK_ADZONE_ID'),
         "q": query
     }).json()
     result = next(result for result in material_response['result_list'] if result['title'] == query)
     money = Decimal(result['zk_final_price']) * Decimal(result['commission_rate']) / Decimal(10000)
-    print("money get", money)
     return str(money)
 
 
