@@ -41,7 +41,11 @@ def hello(message: TextMessage):
     }).json()
     result = next(result for result in material_response['result_list'] if result['title'] == query)
     money = Decimal(result['zk_final_price']) * Decimal(result['commission_rate']) / Decimal(10000)
-    return str(money)
+    return f'''
+        商品名称: ${query}
+        商品价格: ${result['zk_final_price']}
+        商品返利: ${money}
+    '''
 
 
 robot.config['HOST'] = '0.0.0.0'
