@@ -42,7 +42,13 @@ def hello(message: TextMessage):
     result = next(result for result in material_response['result_list'] if result['title'] == query)
     logger.info(f"result is {result}")
     money = Decimal(result['zk_final_price']) * Decimal(result['commission_rate']) / Decimal(10000)
-    return f"商品名称: {query}\n商品价格: {result['zk_final_price']}\n商品返利: {money}\n"
+    url = "https:" + material_response['result_list'][0]['url']
+    tkl_response = request('taobao.tbk.tpwd.create', {
+        "url": url,
+        "sub_pid": os.getenv('TBK_SUB_PID'),
+    }).json()
+    kouling = tkl_response.json()['data']['password_simple']
+    return f"商品名称: {query}\n商品价格: {result['zk_final_price']}\n商品返利: {money}\n商品口令: {kouling}"
 
 
 robot.config['HOST'] = '0.0.0.0'
