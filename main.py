@@ -47,7 +47,7 @@ def hello(message: TextMessage):
         "url": url,
         "sub_pid": os.getenv('TBK_SUB_PID'),
     }).json()
-    kouling = tkl_response.json()['data']['password_simple']
+    kouling = tkl_response['data']['password_simple']
     return f"商品名称: {query}\n商品价格: {result['zk_final_price']}\n商品返利: {money}\n商品口令: {kouling}"
 
 
