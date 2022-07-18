@@ -57,4 +57,4 @@ robot.config['HOST'] = '0.0.0.0'
 robot.config['PORT'] = 80
 robot.config["APP_ID"] = os.getenv('WECHAT_OA_APP_ID')
 robot.config['ENCODING_AES_KEY'] = os.getenv('WECHAT_OA_AES')
-robot.run()
+robot.run(server='waitress')
