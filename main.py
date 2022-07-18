@@ -50,7 +50,7 @@ def hello(message: TextMessage):
         "sub_pid": os.getenv('TBK_SUB_PID'),
     }).json()
     kouling = tkl_response['data']['password_simple']
-    return f"商品名称: {query}\n商品价格: {result['zk_final_price']}\n商品返利: {money}\n商品口令: {kouling}"
+    return f"商品名称: {query}\n商品价格: {result['zk_final_price']}\n商品返利: {money}\n商品口令: {kouling}\n\n长按复制整条消息，然后打开淘宝即可"
 
 
 robot.config['HOST'] = '0.0.0.0'
