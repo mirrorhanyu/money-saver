@@ -41,7 +41,7 @@ def hello(message: TextMessage):
     }).json()
     result = next(result for result in material_response['result_list'] if result['title'] == query)
     logger.info(f"{result}")
-    cost = Decimal(result['zk_final_price']) if result['coupon_amount'] is None else Decimal(result['zk_final_price']) - Decimal(result['coupon_amount'])
+    cost = Decimal(result['zk_final_price']) if result.get('coupon_amount') is None else Decimal(result['zk_final_price']) - Decimal(result['coupon_amount'])
     money = cost * Decimal(result['commission_rate']) / Decimal(10000)
     url = "https:" + material_response['result_list'][0]['url']
     coupon_share_url = "https:" + material_response['result_list'][0]['coupon_share_url']
