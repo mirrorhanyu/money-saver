@@ -33,18 +33,19 @@ def subscribe(message):
 
 @robot.text
 def hello(message: TextMessage):
-    logger.info(f"message from {message.source} to {message.target} is {message.content} at {message.time}")
+    logger.info(f"message from {message.source} to {message.target} is {message.content} at {message.time} \n")
     query = re.findall('「(.*?)」',message.content)[0]
     material_response = request('taobao.tbk.dg.material.optional', {
         "adzone_id": os.getenv('TBK_ADZONE_ID'),
         "q": query
     }).json()
     result = next(result for result in material_response['result_list'] if result['title'] == query)
-    logger.info(f"{result}")
+    logger.info(f"{result} \n")
     cost = Decimal(result['zk_final_price']) if result.get('coupon_amount') is None else Decimal(result['zk_final_price']) - Decimal(result['coupon_amount'])
     money = cost * Decimal(result['commission_rate']) / Decimal(10000)
     url = "https:" + material_response['result_list'][0]['url']
     coupon_share_url = "https:" + material_response['result_list'][0]['coupon_share_url']
+    logger.info(f"request passcode with {coupon_share_url or url}")
     tkl_response = request('taobao.tbk.tpwd.create', {
         "url": coupon_share_url or url,
         "sub_pid": os.getenv('TBK_SUB_PID'),
