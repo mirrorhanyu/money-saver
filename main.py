@@ -44,10 +44,10 @@ def hello(message: TextMessage):
     cost = Decimal(result['zk_final_price']) if result.get('coupon_amount') is None else Decimal(result['zk_final_price']) - Decimal(result['coupon_amount'])
     money = cost * Decimal(result['commission_rate']) / Decimal(10000)
     url = "https:" + material_response['result_list'][0]['url']
-    coupon_share_url = "https:" + material_response['result_list'][0]['coupon_share_url']
+    coupon_share_url = "https:" + result['coupon_share_url']
     logger.info(f"request passcode with {coupon_share_url or url}")
     tkl_response = request('taobao.tbk.tpwd.create', {
-        "url": coupon_share_url or url,
+        "url": coupon_share_url if result['coupon_share_url'] != "" else url,
         "sub_pid": os.getenv('TBK_SUB_PID'),
     }).json()
     kouling = tkl_response['data']['password_simple']
