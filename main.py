@@ -45,9 +45,9 @@ def hello(message: TextMessage):
     money = cost * Decimal(result['commission_rate']) / Decimal(10000)
     url = "https:" + material_response['result_list'][0]['url']
     coupon_share_url = "https:" + result['coupon_share_url']
-    logger.info(f"request passcode with {coupon_share_url or url}")
+    logger.info(f"request passcode with {url if result['coupon_share_url'] is None else coupon_share_url}")
     tkl_response = request('taobao.tbk.tpwd.create', {
-        "url": coupon_share_url if result['coupon_share_url'] != "" else url,
+        "url": url if result['coupon_share_url'] is None else coupon_share_url,
         "sub_pid": os.getenv('TBK_SUB_PID'),
     }).json()
     kouling = tkl_response['data']['password_simple']
